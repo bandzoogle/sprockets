@@ -18,7 +18,7 @@ module Sprockets
     end
 
     def call(input)
-      engine = ::ERB.new(input[:data], nil, '<>')
+      engine = ::ERB.new(input[:data], trim_mode: '<>')
       context = input[:environment].context_class.new(input)
       klass = (class << context; self; end)
       klass.class_eval(&@block) if @block
